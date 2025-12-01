@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../styles/index.css">
+    </head>
+    <body>
+
+        <h1 id="logo">Farmland Detection with U-Net: Experimenting with Beeldmaterial Imagery</h1>
+        <img id="github" src="../images/github.png">
+
+        <!-- Slide 1 -->
+        <div class="slide">
+            <h2 class="slide_title">1. Introduction</h2>
+            <div class="slide_contents">
+                <div class="picture_area">
+                    <img class="slide_picture" src="../qgis_files/outputs/study_area_map.png">
+                    <div class="picture_caption">Figure 1. The study area map.</div>
+                </div>
+                <div class="slide_text">
+                    <ul>
+                        <li>The Netherlands faces high nitrogen pollution from intensive farming.​</li>
+                        <li>Simpler approaches like NDVI thresholding would clump all vegetation together.</li>
+                        <li>This project used Deep Learning to better differentiate farmland from other vegetation.</li>
+                        <li>Study area: Enschede, the Netherlands.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <h2 class="slide_title">2. Beeldmaterial Image Set</h2>
+            <div class="slide_contents">
+                <div class="picture_area">
+                    <img class="slide_picture" src="../images/one.png">
+                    <div class="picture_caption">Figure 2. The chosen Beeldmaterial RGB tiles.</div>
+                </div>
+                <div class="slide_text">
+                    <ul>
+                        <li>25 cm <a href="https://www.beeldmateriaal.nl/dataroom">Beeldmaterial</a> RGB (true-colour) and CIR (coloured-infrared) orthophotos were chosen for this project.​ </li>
+                        <li>These tiles cover the whole of Enschede.​</li>
+                        <li>Acquisition date: Summer 2024.​​</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <h2 class="slide_title">3. NDVI Tiles Generation</h2>
+            <div class="slide_contents">
+                <div class="picture_area">
+                    <img class="slide_picture" src="../images/two.png">
+                    <div class="picture_caption">Figure 3. The generated NDVI tiles.</div>
+                </div>
+                <div class="slide_text">
+                    <ul>
+                        <li>The CIR orthophotos were used for generating NDVI tiles. ​​​</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <h2 class="slide_title">4. Reference Raster​​​​</h2>
+            <div class="slide_contents">
+                <div class="picture_area">
+                    <img class="slide_picture" src="../images/three.png">
+                    <div class="picture_caption">Figure 4. The selected reference raster.</div>
+                </div>
+                <div class="slide_text">
+                    <ul>
+                        <li>The land use and land cover raster from <a href="https://lgn.nl/">LGN</a> was used as the reference raster.​ ​​​</li>
+                        <li>This file was reclassified into three classes: farms, other vegetation, and all others. </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <h2 class="slide_title">5. Training/Testing Split​​​​</h2>
+            <div class="slide_contents">
+                <div class="picture_area">
+                    <img class="slide_picture" src="../images/four.png">
+                    <div class="picture_caption">Figure 5. The selected RGB training and testing tiles.</div>
+                </div>
+                <div class="slide_text">
+                    <ul>
+                            <li>The RGB, NDVI, and reference image sets were resampled to a common spatial resolution of 5 m.</li>
+                            <li>These resampled sets were then split into matching training and testing tiles.</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide">
+            <h2 class="slide_title">6. Model Configuration​​​​</h2>
+            <div class="slide_contents">
+                <div class="picture_area">
+                    <img class="slide_picture" src="../images/five.png">
+                    <div class="picture_caption">Figure 6. The range of hyperparameter values used during sensitivity analysis and the corresponding OA, MF1, and IoU scores.</div>
+                </div>
+                <div class="slide_text">
+                    <ul>
+                        <li>​A U-Net model was configured.​​​</li>
+                        <li>Hyperparameter values were evaluated through sensitivity analysis using Overall Accuracy (OA), Mean F1 (mF1), and Mean Intersection-over-Union (mIoU) scores.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide">
+            <h2 class="slide_title">7. Performance Metrics​</h2>
+            <div class="slide_contents">
+                <div class="picture_area">
+                    <img class="slide_picture" src="../images/six.png">
+                    <div class="picture_caption">Figure 7. Performance metrics (OA, mF1, mIoU) obtained on the independent test set.</div>
+                </div>
+                <div class="slide_text">
+                    <ul>
+                        <li>Performance metrics were calculated on the independent testing set.</li>
+                        <li>The trained model achieved moderate Overall Accuracy (OA = 0.69) and Mean F1 (mF1 = 0.61) scores.</li>
+                        <li>The low Mean Intersection-over-Union score (mIoU = 0.46) suggests a mismatch between the predicted and reference class areas.</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide">
+            <h2 class="slide_title">8. Prediction Results</h2>
+            <div class="slide_contents">
+                <div class="picture_area">
+                    <img class="slide_picture" src="../images/seven.png">
+                    <div class="picture_caption">Figure 8. Model prediction for all image tiles.</div>
+                </div>
+                <div class="slide_text">
+                    <ul>
+                        <li>The trained model was used to predict on the complete set of training and testing tiles.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9 -->
+        <div class="slide">
+            <h2 class="slide_title">9. Per-Tile Class Distribution​</h2>
+            <div class="slide_contents">
+                <div class="picture_area">
+                    <img class="slide_picture" src="../images/eight.png">
+                    <div class="picture_caption">Figure 9. Per-class prediction distribution for each tile.</div>
+                </div>
+                <div class="slide_text">
+                    <ul>
+                        <li>For each tile, the trained model's predictions were analysed to determine the per-class distribution.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10 -->
+        <div class="slide">
+            <h2 class="slide_title">10. Overall Class Distribution​​</h2>
+            <div class="slide_contents">
+                <div class="picture_area">
+                    <img class="slide_picture" src="../images/nine.png">
+                    <div class="picture_caption">Figure 10. Comparison of the overall class distribution in the prediction and reference raster.</div>
+                </div>
+                <div class="slide_text">
+                    <ul>
+                        <li>The overall class distributions of the prediction and the reference raster were compared.</li>
+                        <li>The distribution of the farm class was 34.3% in the prediction and 53.4% in the reference raster. </li>
+                        <li>This indicates that the model is under-sensitive to the farm class. This is likely because images captured during this period (summer 2024) lack the textural and spectral characteristics typical of farmland.</li>
+                        <li>The distribution of the other vegetation class was 43.8% in the prediction and 35.3% in the reference raster. </li> 
+                        <li>The distribution of the all-others class was 22.0% in the prediction and 11.3% in the reference raster. </li> 
+                        <li>This suggests that the model is over-sensitive to these classes. This is likely because the inherent heterogeneity of these classes makes it difficult for the model to capture a consistent class signature.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+    </body>
+</html>
